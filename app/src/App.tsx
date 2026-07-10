@@ -15,6 +15,8 @@ const DOORS = (doorsData as unknown as Door[]).filter(
 
 type View = 'map' | 'gallery';
 type YearFilter = string; // 'all' | '2022' | ...
+type CountryFilter = string; // 'all' | 'Czechia' | ...
+type CityFilter = string; // 'all' | 'Prague' | ...
 
 const viewInAnim = (delayMs = 0) =>
   prefersReducedMotion()
@@ -32,6 +34,8 @@ export default function App() {
   const [view, setView] = useState<View>('map');
   const [leaving, setLeaving] = useState<View | null>(null);
   const [year, setYear] = useState<YearFilter>('all');
+  const [country, setCountry] = useState<CountryFilter>('all');
+  const [city, setCity] = useState<CityFilter>('all');
   const [selected, setSelected] = useState<Door | null>(null);
   const mapRef = useRef<MapHandle>(null);
   const switchTimer = useRef<number | undefined>(undefined);
@@ -65,13 +69,35 @@ export default function App() {
     return [...set].sort((a, b) => a - b);
   }, []);
 
-  const filtered = useMemo(
-    () => (year === 'all' ? DOORS : DOORS.filter((d) => String(d.year) === year)),
-    [year],
+  // Country & city options always show the full universe — independent of year filter.
+  const countryOptions = useMemo(() => {
+    const set = new Set<string>();
+    for (const d of DOORS) if (d.country) set.add(d.country);
+    return [...set].sort();
+  }, []);
+
+  const cityOptions = useMemo(() => {
+    const set = new Set<string>();
+    for (const d of DOORS) if (d.city) set.add(d.city);
+    return [...set].sort();
+  }, []);
+
+  // Filters are independent — intersection of all three.
+  const filtered = useMemo(() => {
+    let result = DOORS;
+    if (year !== 'all') result = result.filter((d) => String(d.year) === year);
+    if (country !== 'all') result = result.filter((d) => d.country === country);
+    if (city !== 'all') result = result.filter((d) => d.city === city);
+    return result;
+  }, [year, country, city]);
+
+  const countryCount = useMemo(
+    () => new Set(filtered.map((d) => d.country).filter(Boolean)).size,
+    [filtered],
   );
 
-  const countries = useMemo(
-    () => new Set(filtered.map((d) => d.country).filter(Boolean)).size,
+  const cityCount = useMemo(
+    () => new Set(filtered.map((d) => d.city).filter(Boolean)).size,
     [filtered],
   );
 
@@ -122,7 +148,7 @@ export default function App() {
           style={{ animation: layerAnim('gallery') }}
         >
           <Gallery
-            key={year}
+            key={`${year}-${country}-${city}`}
             doors={filtered}
             onSelect={setSelected}
             baseDelayMs={leaving && view === 'gallery' ? 150 : 0}
@@ -141,11 +167,40 @@ export default function App() {
           </h1>
           <p className="mt-0.5 text-sm text-ink-3">
             {filtered.length} {filtered.length === 1 ? 'door' : 'doors'} ·{' '}
-            {countries} {countries === 1 ? 'country' : 'countries'}
+            {countryCount} {countryCount === 1 ? 'country' : 'countries'}
+            {city !== 'all' && <> · {cityCount} {cityCount === 1 ? 'city' : 'cities'}</>}
           </p>
         </div>
         <Segmented options={viewOptions} value={view} onChange={changeView} ariaLabel="View" />
         <Segmented options={yearOptions} value={year} onChange={setYear} ariaLabel="Filter by year" />
+
+        {/* Country & city dropdowns — only in gallery view */}
+        {view === 'gallery' && (
+          <div className="flex gap-2">
+            <select
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              aria-label="Filter by country"
+              className="flex-1 rounded-lg border border-border bg-surface-2 px-2.5 py-1.5 text-sm text-ink outline-none transition-colors duration-150 focus:border-accent focus:ring-1 focus:ring-accent"
+            >
+              <option value="all">All Countries</option>
+              {countryOptions.map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+            <select
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              aria-label="Filter by city"
+              className="flex-1 rounded-lg border border-border bg-surface-2 px-2.5 py-1.5 text-sm text-ink outline-none transition-colors duration-150 focus:border-accent focus:ring-1 focus:ring-accent"
+            >
+              <option value="all">All Cities</option>
+              {cityOptions.map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+          </div>
+        )}
       </header>
 
       {/* Theme toggle, top-right. */}
@@ -153,7 +208,13 @@ export default function App() {
         <ThemeToggle theme={theme} onToggle={toggle} />
       </div>
 
-      <DoorModal door={selected} onClose={() => setSelected(null)} onShowOnMap={handleShowOnMap} />
+      <DoorModal
+        door={selected}
+        doors={filtered}
+        onClose={() => setSelected(null)}
+        onShowOnMap={handleShowOnMap}
+        onNavigate={setSelected}
+      />
     </div>
   );
 }

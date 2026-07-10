@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { MapPin, X } from 'lucide-react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { ChevronLeft, ChevronRight, MapPin, X } from 'lucide-react';
 import type { Door } from '../lib/types';
 import { STANDARD_EASE_CSS, prefersReducedMotion } from '../lib/easing';
 import { formatCoords, formatDate, placeLabel } from '../lib/format';
@@ -7,8 +7,12 @@ import { formatCoords, formatDate, placeLabel } from '../lib/format';
 interface DoorModalProps {
   /** The door to show, or null to close. */
   door: Door | null;
+  /** All doors in the current filtered list, for prev/next navigation. */
+  doors: Door[];
   onClose: () => void;
   onShowOnMap: (door: Door) => void;
+  /** Called when the user navigates to a different door via arrows. */
+  onNavigate: (door: Door) => void;
 }
 
 /**
@@ -17,7 +21,7 @@ interface DoorModalProps {
  * mounted until animationend with a setTimeout fallback (+100ms). Esc and
  * backdrop-click close.
  */
-export function DoorModal({ door, onClose, onShowOnMap }: DoorModalProps) {
+export function DoorModal({ door, doors, onClose, onShowOnMap, onNavigate }: DoorModalProps) {
   const [shown, setShown] = useState<Door | null>(door);
   const [closing, setClosing] = useState(false);
   const timerRef = useRef<number | undefined>(undefined);
@@ -38,15 +42,29 @@ export function DoorModal({ door, onClose, onShowOnMap }: DoorModalProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [door]);
 
-  // Esc to close.
+  const currentIndex = doors.findIndex((d) => d.id === shown?.id);
+  const hasPrev = currentIndex > 0;
+  const hasNext = currentIndex >= 0 && currentIndex < doors.length - 1;
+
+  const goPrev = useCallback(() => {
+    if (hasPrev) onNavigate(doors[currentIndex - 1]);
+  }, [hasPrev, doors, currentIndex, onNavigate]);
+
+  const goNext = useCallback(() => {
+    if (hasNext) onNavigate(doors[currentIndex + 1]);
+  }, [hasNext, doors, currentIndex, onNavigate]);
+
+  // Esc / arrow keys.
   useEffect(() => {
     if (!shown || closing) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
+      else if (e.key === 'ArrowLeft') goPrev();
+      else if (e.key === 'ArrowRight') goNext();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [shown, closing, onClose]);
+  }, [shown, closing, onClose, goPrev, goNext]);
 
   useEffect(() => () => window.clearTimeout(timerRef.current), []);
 
@@ -70,8 +88,22 @@ export function DoorModal({ door, onClose, onShowOnMap }: DoorModalProps) {
       aria-modal="true"
       aria-label={placeLabel(shown)}
     >
+      <div className="flex items-center gap-3 sm:gap-4" onClick={(e) => e.stopPropagation()}>
+        {/* Prev arrow */}
+        {hasPrev && (
+          <button
+            type="button"
+            onClick={goPrev}
+            aria-label="Previous door"
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border bg-surface-2/80 text-ink-2 backdrop-blur shadow-lg transition-colors duration-150 hover:bg-surface-3 hover:text-ink"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+        )}
+        {!hasPrev && <div className="h-12 w-12 shrink-0" aria-hidden />}
+
       <div
-        className="card relative flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border-border-strong shadow-2xl"
+        className="card relative flex max-h-[90vh] w-full max-w-[55.44rem] flex-col overflow-hidden rounded-2xl border-border-strong shadow-2xl"
         style={{ animation: panelAnim }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -84,13 +116,20 @@ export function DoorModal({ door, onClose, onShowOnMap }: DoorModalProps) {
           <X className="h-4 w-4" />
         </button>
 
-        <div className="flex min-h-0 flex-1 items-center justify-center bg-surface-3">
+        <div className="flex min-h-0 flex-1 items-center justify-center bg-surface-3 relative">
           <img
             src={`/photos/${shown.file}-full.webp`}
             alt={`Door in ${placeLabel(shown)}`}
             style={aspect ? { aspectRatio: String(aspect) } : undefined}
-            className="max-h-[62vh] w-auto max-w-full object-contain"
+            className="max-h-[81.4vh] w-auto max-w-full object-contain"
           />
+
+          {/* Counter */}
+          {currentIndex >= 0 && doors.length > 1 && (
+            <span className="absolute bottom-2 right-2 z-10 rounded-full bg-surface-2/70 px-2.5 py-0.5 text-xs text-ink-2 backdrop-blur">
+              {currentIndex + 1} / {doors.length}
+            </span>
+          )}
         </div>
 
         <div className="flex items-end justify-between gap-4 border-t border-border p-5">
@@ -115,6 +154,20 @@ export function DoorModal({ door, onClose, onShowOnMap }: DoorModalProps) {
             Show on map
           </button>
         </div>
+      </div>
+
+      {/* Next arrow */}
+      {hasNext && (
+        <button
+          type="button"
+          onClick={goNext}
+          aria-label="Next door"
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border bg-surface-2/80 text-ink-2 backdrop-blur shadow-lg transition-colors duration-150 hover:bg-surface-3 hover:text-ink"
+        >
+          <ChevronRight className="h-6 w-6" />
+        </button>
+      )}
+      {!hasNext && <div className="h-12 w-12 shrink-0" aria-hidden />}
       </div>
     </div>
   );
