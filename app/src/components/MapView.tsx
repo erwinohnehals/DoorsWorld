@@ -52,6 +52,7 @@ export const MapView = forwardRef<MapHandle, MapViewProps>(function MapView(
   const clusterRef = useRef<L.MarkerClusterGroup | null>(null);
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
+  const initialFitDone = useRef(false);
 
   // Create the map once.
   useEffect(() => {
@@ -62,7 +63,7 @@ export const MapView = forwardRef<MapHandle, MapViewProps>(function MapView(
       worldCopyJump: true,
       maxZoom: 19,
       minZoom: 2,
-    }).setView([30, 10], 2);
+    }).setView([50, 12], 5);
     mapRef.current = map;
 
     // Keep zoom controls clear of the top-left header card.
@@ -115,7 +116,11 @@ export const MapView = forwardRef<MapHandle, MapViewProps>(function MapView(
 
     if (doors.length > 0) {
       const bounds = L.latLngBounds(doors.map((d) => [d.lat, d.lon] as [number, number]));
-      map.fitBounds(bounds, { padding: [70, 70], maxZoom: 14, animate: false });
+      if (initialFitDone.current) {
+        map.fitBounds(bounds, { padding: [70, 70], maxZoom: 14, animate: true });
+      } else {
+        initialFitDone.current = true;
+      }
     }
   }, [doors]);
 
