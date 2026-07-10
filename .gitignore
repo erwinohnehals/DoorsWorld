@@ -1,0 +1,14 @@
+# Original photos — 300+ MB of personal HEIC/JPG masters; the app uses the
+# generated WebP derivatives in app/public/photos instead.
+Assets/
+
+# Dependencies & build output
+node_modules/
+app/dist/
+
+# Tooling artifacts
+.playwright-mcp/
+
+# Ad-hoc verification screenshots in the repo root
+/*.png
+app/scripts/build.log

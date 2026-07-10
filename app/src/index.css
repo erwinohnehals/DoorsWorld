@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Theme tokens (canonical palette, copied from design-language.html) ─── */
+:root {
+  /* Light mode (default) — warm cream palette */
+  --color-surface:        245 243 239;  /* #F5F3EF */
+  --color-surface-2:      255 255 255;  /* #FFFFFF */
+  --color-surface-3:      234 232 228;  /* #EAE8E4 */
+  --color-surface-sunken: 232 229 222;  /* #E8E5DE */
+  --color-border:         224 221 216;  /* #E0DDD8 */
+  --color-border-strong:  203 200 194;  /* #CBC8C2 */
+  --color-content:         28  25  23;  /* #1C1917 */
+  --color-content-2:       87  83  78;  /* #57534E */
+  --color-content-3:      168 162 158;  /* #A8A29E */
+  --color-accent:         245 158  11;  /* #F59E0B */
+  --color-accent-hover:   217 119   6;  /* #D97706 */
+}
+.dark {
+  /* Dark mode — warm charcoal, accent switches to warm peach */
+  --color-surface:         22  20  20;  /* #161414 */
+  --color-surface-2:       32  29  29;  /* #201D1D */
+  --color-surface-3:       55  65  81;  /* #374151 */
+  --color-surface-sunken:  42  39  39;  /* #2A2727 */
+  --color-border:          31  41  55;  /* #1F2937 */
+  --color-border-strong:   55  65  81;  /* #374151 */
+  --color-content:        249 250 251;  /* #F9FAFB */
+  --color-content-2:      209 213 219;  /* #D1D5DB */
+  --color-content-3:      156 163 175;  /* #9CA3AF */
+  --color-accent:         250 184 119;  /* #FAB877 */
+  --color-accent-hover:   230 169 109;  /* #E6A96D */
+}
+
+/* ─── Base ─────────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+  body {
+    margin: 0;
+    font-family: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont,
+      'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+    background-color: rgb(var(--color-surface));
+    color: rgb(var(--color-content));
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    font-size: 16px;
+    transition: background-color 250ms ease, color 250ms ease;
+  }
+  h1, h2, h3, h4 {
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-accent));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  button:focus-visible { outline: none; }
+  ::selection { background: #3B82F6; color: #fff; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: rgb(var(--color-surface-3)); }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--color-border-strong));
+    border-radius: 4px;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   THE ANIMATION LIBRARY — canonical keyframes, copied from design-language.
+   Single-endpoint keyframes: only `from` (enter) or `to` (exit) is defined.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Generic reveal — rise distance parametrized via --rise-y */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(var(--rise-y, 16px)); }
+}
+
+/* View transitions */
+@keyframes view-in  { from { opacity: 0; transform: translateX(20px); } }
+@keyframes view-out { to   { opacity: 0; transform: translateX(-20px); } }
+
+/* Modal */
+@keyframes modal-backdrop-in  { from { opacity: 0; } }
+@keyframes modal-backdrop-out { to   { opacity: 0; } }
+@keyframes modal-panel-in  { from { opacity: 0; transform: translateY(16px) scale(0.96); } }
+@keyframes modal-panel-out { to   { opacity: 0; transform: translateY(10px) scale(0.97); } }
+
+/* Button press — easing lives inside the keyframes, applied with `linear` */
+@keyframes btn-press {
+  0%   { transform: scale(1);    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53); }
+  50%  { transform: scale(0.95); animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Component recipes (semantic tokens only) ─────────────────────────── */
+@layer components {
+  .card {
+    background: rgb(var(--color-surface-2));
+    border: 1px solid rgb(var(--color-border));
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+  }
+
+  .btn {
+    font: inherit;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition-property: color, background-color, border-color, transform, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn:active { transform: scale(0.95); }
+  .btn-primary   { background: rgb(var(--color-content)); color: rgb(var(--color-surface)); }
+  .btn-primary:hover { background: rgb(var(--color-content-2)); }
+  .btn-secondary {
+    background: rgb(var(--color-surface-2));
+    color: rgb(var(--color-content));
+    border: 1px solid rgb(var(--color-border));
+  }
+  .btn-secondary:hover { background: rgb(var(--color-surface-3)); }
+  .btn-ghost { background: transparent; color: rgb(var(--color-content-2)); }
+  .btn-ghost:hover { background: rgb(var(--color-surface-3)); color: rgb(var(--color-content)); }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   LEAFLET — restyle the map chrome, popups, markers and clusters with tokens.
+   ════════════════════════════════════════════════════════════════════════ */
+.leaflet-container {
+  background: rgb(var(--color-surface-3));
+  font-family: inherit;
+}
+
+.leaflet-control-attribution {
+  background: rgb(var(--color-surface-2) / 0.82) !important;
+  color: rgb(var(--color-content-3)) !important;
+  backdrop-filter: blur(8px);
+  border-top-left-radius: 8px;
+  border: 1px solid rgb(var(--color-border));
+  font-size: 0.6875rem;
+}
+.leaflet-control-attribution a { color: rgb(var(--color-content-2)) !important; }
+
+.leaflet-bar {
+  border: 1px solid rgb(var(--color-border)) !important;
+  border-radius: 10px !important;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06) !important;
+}
+.leaflet-bar a {
+  background: rgb(var(--color-surface-2)) !important;
+  color: rgb(var(--color-content-2)) !important;
+  border-bottom: 1px solid rgb(var(--color-border)) !important;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.leaflet-bar a:hover {
+  background: rgb(var(--color-surface-3)) !important;
+  color: rgb(var(--color-content)) !important;
+}
+
+/* Door marker pin — pure CSS, re-themes via tokens */
+.door-pin {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: rgb(var(--color-content));
+  border: 2px solid rgb(var(--color-surface-2));
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.door-pin::after {
+  content: '';
+  width: 5px;
+  height: 7px;
+  border-radius: 1.5px 1.5px 0 0;
+  background: rgb(var(--color-surface-2));
+}
+.door-pin:hover { transform: scale(1.25); }
+
+/* Marker cluster — monochrome badge */
+.door-cluster { background: transparent; }
+.door-cluster > div {
+  width: 38px;
+  height: 38px;
+  border-radius: 9999px;
+  background: rgb(var(--color-surface-2));
+  border: 1px solid rgb(var(--color-border-strong));
+  color: rgb(var(--color-content));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.18);
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.door-cluster:hover > div { transform: scale(1.08); }
