@@ -22,9 +22,9 @@ const TILE_URLS: Record<Theme, string> = {
 };
 const ATTRIBUTION = '© OpenStreetMap contributors © CARTO';
 
-// Initial view: central Europe, ~30% tighter than zoom 5 (zoom is log2 scale).
+// Initial view: central Europe (zoom is log2 scale; tuned by eye).
 const INITIAL_CENTER: L.LatLngExpression = [50, 12];
-const INITIAL_ZOOM = 5.4;
+const INITIAL_ZOOM = 5.7;
 
 const doorIcon = L.divIcon({
   className: 'door-pin-wrap',

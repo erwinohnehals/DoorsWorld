@@ -6,6 +6,8 @@
 
 /* ─── Theme tokens (canonical palette, copied from design-language.html) ─── */
 :root {
+  /* Native widgets (select popups, scrollbars) follow the active theme */
+  color-scheme: light;
   /* Light mode (default) — warm cream palette */
   --color-surface:        245 243 239;  /* #F5F3EF */
   --color-surface-2:      255 255 255;  /* #FFFFFF */
@@ -20,6 +22,7 @@
   --color-accent-hover:   217 119   6;  /* #D97706 */
 }
 .dark {
+  color-scheme: dark;
   /* Dark mode — warm charcoal, accent switches to warm peach */
   --color-surface:         22  20  20;  /* #161414 */
   --color-surface-2:       32  29  29;  /* #201D1D */
@@ -66,6 +69,11 @@
     border-radius: 4px;
   }
   button:focus-visible { outline: none; }
+  /* Fallback for browsers that paint <option> directly (Firefox, Chrome/Win) */
+  option {
+    background-color: rgb(var(--color-surface-2));
+    color: rgb(var(--color-content));
+  }
   ::selection { background: #3B82F6; color: #fff; }
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: rgb(var(--color-surface-3)); }

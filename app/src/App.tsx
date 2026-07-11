@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ChevronDown, X } from 'lucide-react';
+import { ChevronDown, Plus, X } from 'lucide-react';
 import doorsData from './data/doors.json';
 import type { Door } from './lib/types';
 import { useTheme } from './lib/useTheme';
@@ -10,6 +10,8 @@ import { ThemeToggle } from './components/ThemeToggle';
 import { MapView, type MapHandle } from './components/MapView';
 import { Gallery } from './components/Gallery';
 import { DoorModal } from './components/DoorModal';
+import { AddDoor } from './components/AddDoor';
+import { takeSharedFiles } from './lib/shareInbox';
 
 const DOORS = (doorsData as unknown as Door[]).filter(
   (d) => typeof d.lat === 'number' && typeof d.lon === 'number',
@@ -34,6 +36,8 @@ export default function App() {
   const [country, setCountry] = useState<CountryFilter>('all');
   const [city, setCity] = useState<CityFilter>('all');
   const [selected, setSelected] = useState<Door | null>(null);
+  const [addOpen, setAddOpen] = useState(false);
+  const [sharedFiles, setSharedFiles] = useState<File[] | null>(null);
   const mapRef = useRef<MapHandle>(null);
   const galleryScrollRef = useRef<HTMLDivElement>(null);
   const switchTimer = useRef<number | undefined>(undefined);
@@ -52,6 +56,19 @@ export default function App() {
   };
 
   useEffect(() => () => window.clearTimeout(switchTimer.current), []);
+
+  // Pick up photos stashed by the service worker after an Android
+  // share-sheet launch (?shared=1) and open the ingest modal with them.
+  useEffect(() => {
+    if (!new URLSearchParams(window.location.search).has('shared')) return;
+    window.history.replaceState(null, '', window.location.pathname);
+    takeSharedFiles().then((files) => {
+      if (files.length) {
+        setSharedFiles(files);
+        setAddOpen(true);
+      }
+    });
+  }, []);
 
   // Animation for a view layer: exit while leaving, delayed entrance while
   // its counterpart leaves, none at rest (so hover/state styles stay intact).
@@ -280,9 +297,20 @@ export default function App() {
               <> · {cityCount} {cityCount === 1 ? 'city' : 'cities'}</>
             )}
           </p>
+          <button
+            type="button"
+            onClick={() => setAddOpen(true)}
+            aria-label="Add doors"
+            title="Add doors"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-surface-2 text-ink-2 transition-colors duration-150 hover:bg-surface-3 hover:text-ink"
+          >
+            <Plus className="h-4 w-4" />
+          </button>
           <ThemeToggle theme={theme} onToggle={toggle} />
         </div>
       </header>
+
+      <AddDoor open={addOpen} onClose={() => setAddOpen(false)} sharedFiles={sharedFiles} />
 
       <DoorModal
         door={selected}

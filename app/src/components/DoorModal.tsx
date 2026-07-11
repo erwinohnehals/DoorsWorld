@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, MapPin, X } from 'lucide-react';
 import type { Door } from '../lib/types';
 import { STANDARD_EASE_CSS, prefersReducedMotion } from '../lib/easing';
-import { formatCoords, formatDate, placeLabel } from '../lib/format';
+import { formatCoords, formatDate, photoUrl, placeLabel } from '../lib/format';
 
 interface DoorModalProps {
   /** The door to show, or null to close. */
@@ -118,7 +118,7 @@ export function DoorModal({ door, doors, onClose, onShowOnMap, onNavigate }: Doo
 
         <div className="flex min-h-0 flex-1 items-center justify-center bg-surface-3 relative">
           <img
-            src={`/photos/${shown.file}-full.webp`}
+            src={photoUrl(shown.file, 'full')}
             alt={`Door in ${placeLabel(shown)}`}
             style={aspect ? { aspectRatio: String(aspect) } : undefined}
             className="max-h-[81.4vh] w-auto max-w-full object-contain"

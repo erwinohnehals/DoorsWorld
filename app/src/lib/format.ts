@@ -22,3 +22,8 @@ export function placeLabel(door: Pick<Door, 'city' | 'country'>): string {
 export function formatCoords(lat: number, lon: number): string {
   return `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
 }
+
+/** URL of a door photo derivative, honouring the deploy base path. */
+export function photoUrl(file: string, kind: 'thumb' | 'full'): string {
+  return `${import.meta.env.BASE_URL}photos/${file}-${kind}.webp`;
+}

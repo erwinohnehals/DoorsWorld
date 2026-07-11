@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import type { Door } from '../lib/types';
 import { EXPO_OUT_CSS, STANDARD_EASE_CSS } from '../lib/easing';
-import { formatDate, placeLabel } from '../lib/format';
+import { formatDate, photoUrl, placeLabel } from '../lib/format';
 
 interface GalleryProps {
   doors: Door[];
@@ -47,7 +47,7 @@ export function Gallery({ doors, onSelect, baseDelayMs = 0 }: GalleryProps) {
               >
                 <div className="overflow-hidden bg-surface-3" style={{ aspectRatio: String(aspect) }}>
                   <img
-                    src={`/photos/${door.file}-thumb.webp`}
+                    src={photoUrl(door.file, 'thumb')}
                     alt={`Door in ${placeLabel(door)}`}
                     loading="lazy"
                     className="h-full w-full object-cover"
