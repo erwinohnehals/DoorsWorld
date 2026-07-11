@@ -132,7 +132,7 @@ export function DoorModal({ door, doors, onClose, onShowOnMap, onNavigate }: Doo
           )}
         </div>
 
-        <div className="flex items-end justify-between gap-4 border-t border-border px-5 pb-5 pt-7">
+        <div className="flex items-end justify-between gap-4 border-t border-border px-5 pb-5 pt-12">
           <div className="min-w-0">
             <h2 className="truncate text-lg font-semibold tracking-[-0.02em] text-ink">
               {placeLabel(shown)}

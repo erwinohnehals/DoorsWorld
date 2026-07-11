@@ -78,7 +78,11 @@ export const MapView = forwardRef<MapHandle, MapViewProps>(function MapView(
 
     const cluster = L.markerClusterGroup({
       showCoverageOnHover: false,
-      maxClusterRadius: 48,
+      // Small radius so pins break out of clusters at much lower zoom; past
+      // street level don't cluster at all (same-spot pins spiderfy on click).
+      maxClusterRadius: 20,
+      disableClusteringAtZoom: 17,
+      spiderfyOnMaxZoom: true,
       chunkedLoading: true,
       iconCreateFunction: createClusterIcon,
     });
