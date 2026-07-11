@@ -16,11 +16,12 @@ const STAGGER_CAP = 24;
  * Responsive grid of door thumbnails. Cards stagger in per the list-stagger
  * spec (250ms STANDARD_EASE, 50ms/item, rise 20px, backwards fill, capped at
  * ~24). Hover lifts the card 2px. Mounting fresh on view-switch replays the
- * cascade; reduced-motion collapses it via the global rule.
+ * cascade; reduced-motion collapses it via the global rule. The scroll
+ * container lives in App so the filter bar can sit in-flow above the grid.
  */
 export function Gallery({ doors, onSelect, baseDelayMs = 0 }: GalleryProps) {
   return (
-    <div className="h-full overflow-y-auto px-4 pb-10 pt-[7.5rem] sm:px-6 sm:pt-[8.5rem]">
+    <div className="px-4 pb-10 pt-3 sm:px-6">
       <div className="mx-0 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {doors.map((door, i) => {
           const delay = baseDelayMs + Math.min(i, STAGGER_CAP) * 50;
@@ -55,7 +56,7 @@ export function Gallery({ doors, onSelect, baseDelayMs = 0 }: GalleryProps) {
         })}
       </div>
       {doors.length === 0 && (
-        <p className="mt-10 text-sm text-ink-3">No doors for this year.</p>
+        <p className="mt-10 text-sm text-ink-3">No doors match these filters.</p>
       )}
     </div>
   );

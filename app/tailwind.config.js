@@ -36,6 +36,11 @@ export default {
           "'Helvetica Neue'",
           'sans-serif',
         ],
+        display: [
+          "'Andada Pro'",
+          'Georgia',
+          'serif',
+        ],
         mono: [
           'ui-monospace',
           "'Cascadia Code'",

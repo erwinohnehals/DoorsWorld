@@ -81,7 +81,7 @@ export function DoorModal({ door, doors, onClose, onShowOnMap, onNavigate }: Doo
 
   return (
     <div
-      className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/45 p-4 sm:p-6"
+      className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/60 p-4 sm:p-6"
       style={{ animation: backdropAnim }}
       onClick={onClose}
       role="dialog"
@@ -132,7 +132,7 @@ export function DoorModal({ door, doors, onClose, onShowOnMap, onNavigate }: Doo
           )}
         </div>
 
-        <div className="flex items-end justify-between gap-4 border-t border-border p-5">
+        <div className="flex items-end justify-between gap-4 border-t border-border px-5 pb-5 pt-7">
           <div className="min-w-0">
             <h2 className="truncate text-lg font-semibold tracking-[-0.02em] text-ink">
               {placeLabel(shown)}
