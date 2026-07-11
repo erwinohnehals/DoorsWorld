@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import type { Door } from '../lib/types';
-import { STANDARD_EASE_CSS } from '../lib/easing';
+import { EXPO_OUT_CSS, STANDARD_EASE_CSS } from '../lib/easing';
 import { formatDate, placeLabel } from '../lib/format';
 
 interface GalleryProps {
@@ -35,21 +35,30 @@ export function Gallery({ doors, onSelect, baseDelayMs = 0 }: GalleryProps) {
                 ['--rise-y' as string]: '20px',
                 animation: `rise-in 250ms ${STANDARD_EASE_CSS} ${delay}ms backwards`,
               } as CSSProperties}
-              className="group card block overflow-hidden rounded-xl p-0 text-left transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+              className="group block rounded-xl p-0 text-left"
             >
-              <div className="overflow-hidden bg-surface-3" style={{ aspectRatio: String(aspect) }}>
-                <img
-                  src={`/photos/${door.file}-thumb.webp`}
-                  alt={`Door in ${placeLabel(door)}`}
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="px-3 py-2">
-                <p className="truncate text-sm font-medium text-ink">{placeLabel(door)}</p>
-                {door.date && (
-                  <p className="mt-0.5 truncate text-xs text-ink-3">{formatDate(door.date)}</p>
-                )}
+              {/* Lift lives on this wrapper, not the button, so the hover hit
+                  area stays put and the card can't oscillate at its edges.
+                  EXPO_OUT, not STANDARD_EASE: the house curve's flat start
+                  reads as lag-then-snap at 2px scale. */}
+              <div
+                style={{ transitionTimingFunction: EXPO_OUT_CSS }}
+                className="card overflow-hidden rounded-xl will-change-transform transition-[transform,box-shadow] duration-300 group-hover:-translate-y-0.5 group-hover:shadow-lg"
+              >
+                <div className="overflow-hidden bg-surface-3" style={{ aspectRatio: String(aspect) }}>
+                  <img
+                    src={`/photos/${door.file}-thumb.webp`}
+                    alt={`Door in ${placeLabel(door)}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="px-3 py-2">
+                  <p className="truncate text-sm font-medium text-ink">{placeLabel(door)}</p>
+                  {door.date && (
+                    <p className="mt-0.5 truncate text-xs text-ink-3">{formatDate(door.date)}</p>
+                  )}
+                </div>
               </div>
             </button>
           );

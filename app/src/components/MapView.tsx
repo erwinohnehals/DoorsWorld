@@ -22,6 +22,10 @@ const TILE_URLS: Record<Theme, string> = {
 };
 const ATTRIBUTION = '© OpenStreetMap contributors © CARTO';
 
+// Initial view: central Europe, ~30% tighter than zoom 5 (zoom is log2 scale).
+const INITIAL_CENTER: L.LatLngExpression = [50, 12];
+const INITIAL_ZOOM = 5.4;
+
 const doorIcon = L.divIcon({
   className: 'door-pin-wrap',
   html: '<div class="door-pin"></div>',
@@ -53,6 +57,7 @@ export const MapView = forwardRef<MapHandle, MapViewProps>(function MapView(
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
   const initialFitDone = useRef(false);
+  const initialViewFixed = useRef(false);
 
   // Create the map once.
   useEffect(() => {
@@ -63,7 +68,9 @@ export const MapView = forwardRef<MapHandle, MapViewProps>(function MapView(
       worldCopyJump: true,
       maxZoom: 19,
       minZoom: 2,
-    }).setView([50, 12], 5);
+      // Fractional zoom so the initial view isn't snapped to a whole level.
+      zoomSnap: 0.1,
+    }).setView(INITIAL_CENTER, INITIAL_ZOOM);
     mapRef.current = map;
 
     // Keep zoom controls clear of the top-left header card.
@@ -135,7 +142,17 @@ export const MapView = forwardRef<MapHandle, MapViewProps>(function MapView(
       }
     },
     invalidateSize: () => {
-      mapRef.current?.invalidateSize();
+      const map = mapRef.current;
+      if (!map) return;
+      map.invalidateSize();
+      // The map is created while hidden (the app starts in the gallery), so
+      // Leaflet computes its initial view against a 0×0 container and the
+      // size change on first reveal drifts the center far off. Re-anchor the
+      // initial view the first time the map actually has a size.
+      if (!initialViewFixed.current && map.getSize().x > 0) {
+        initialViewFixed.current = true;
+        map.setView(INITIAL_CENTER, INITIAL_ZOOM, { animate: false });
+      }
     },
   }));
 
