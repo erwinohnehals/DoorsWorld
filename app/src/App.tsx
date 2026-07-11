@@ -69,18 +69,27 @@ export default function App() {
     return [...set].sort((a, b) => a - b);
   }, []);
 
-  // Country & city options always show the full universe — independent of year filter.
   const countryOptions = useMemo(() => {
     const set = new Set<string>();
     for (const d of DOORS) if (d.country) set.add(d.country);
     return [...set].sort();
   }, []);
 
+  // City options depend on the selected country — only show cities from that country.
   const cityOptions = useMemo(() => {
     const set = new Set<string>();
-    for (const d of DOORS) if (d.city) set.add(d.city);
+    for (const d of DOORS) {
+      if (d.city && (country === 'all' || d.country === country)) set.add(d.city);
+    }
     return [...set].sort();
-  }, []);
+  }, [country]);
+
+  // Reset city when country changes and current city isn't available.
+  useEffect(() => {
+    if (city !== 'all' && !cityOptions.includes(city)) {
+      setCity('all');
+    }
+  }, [country, city, cityOptions]);
 
   // Filters are independent — intersection of all three.
   const filtered = useMemo(() => {
