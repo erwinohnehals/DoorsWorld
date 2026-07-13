@@ -228,7 +228,8 @@ export default function App() {
                     <X className="h-3.5 w-3.5" />
                     Clear
                   </button>
-                  <label className="relative">
+                  {/* Year filter is desktop-only — hidden below sm. */}
+                  <label className="relative hidden sm:block">
                     <span className="sr-only">Filter by year</span>
                     <select
                       value={year}
