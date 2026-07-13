@@ -292,8 +292,7 @@ export default function App() {
             DoorsWorld
           </h1>
         </div>
-        <Segmented options={viewOptions} value={view} onChange={changeView} ariaLabel="View" />
-        <div className="flex min-w-0 flex-1 items-center justify-end gap-3">
+        <div className="flex min-w-0 items-center justify-end gap-3">
           <p className="hidden truncate text-sm text-ink-3 sm:block">
             {visibleDoors.length} {visibleDoors.length === 1 ? 'door' : 'doors'} ·{' '}
             {countryCount} {countryCount === 1 ? 'country' : 'countries'}
@@ -312,9 +311,18 @@ export default function App() {
             <Plus className="h-4 w-4" />
           </button>
           */}
-          <ThemeToggle theme={theme} onToggle={toggle} />
+          <Segmented options={viewOptions} value={view} onChange={changeView} ariaLabel="View" />
         </div>
       </header>
+
+      {/* Floating theme toggle — bottom-right, clear of the browser's own
+          floating chrome and above both view layers. */}
+      <div
+        className="fixed bottom-6 right-4 z-[500]"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+      >
+        <ThemeToggle theme={theme} onToggle={toggle} />
+      </div>
 
       <AddDoor open={addOpen} onClose={() => setAddOpen(false)} sharedFiles={sharedFiles} />
 
