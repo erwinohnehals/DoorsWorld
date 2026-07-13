@@ -201,7 +201,10 @@ export default function App() {
                 <span className="w-14 shrink-0 pt-1.5 text-xs font-medium uppercase tracking-wide text-ink-3">
                   Country
                 </span>
-                <div className="min-w-0 flex-1">
+                {/* Below sm the chips take a full-width line of their own
+                    (order-last wraps them under the label + controls) and
+                    scroll horizontally instead of wrapping. */}
+                <div className="order-last w-full min-w-0 sm:order-none sm:w-auto sm:flex-1">
                   <Chips
                     options={[
                       { value: 'all' as CountryFilter, label: 'All' },
@@ -248,7 +251,7 @@ export default function App() {
                   <span className="w-14 shrink-0 pt-1.5 text-xs font-medium uppercase tracking-wide text-ink-3">
                     City
                   </span>
-                  <div className="min-w-0 flex-1">
+                  <div className="order-last w-full min-w-0 sm:order-none sm:w-auto sm:flex-1">
                     <Chips
                       options={[
                         { value: 'all' as CityFilter, label: 'All' },

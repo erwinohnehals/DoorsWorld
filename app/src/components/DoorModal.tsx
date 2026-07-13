@@ -88,19 +88,22 @@ export function DoorModal({ door, doors, onClose, onShowOnMap, onNavigate }: Doo
       aria-modal="true"
       aria-label={placeLabel(shown)}
     >
-      <div className="flex items-center gap-3 sm:gap-4" onClick={(e) => e.stopPropagation()}>
-        {/* Prev arrow */}
+      <div className="flex w-full items-center justify-center gap-3 sm:gap-4">
+        {/* Prev arrow (outside the panel, desktop only) */}
         {hasPrev && (
           <button
             type="button"
-            onClick={goPrev}
+            onClick={(e) => {
+              e.stopPropagation();
+              goPrev();
+            }}
             aria-label="Previous door"
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border bg-surface-2/80 text-ink-2 backdrop-blur shadow-lg transition-colors duration-150 hover:bg-surface-3 hover:text-ink"
+            className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border bg-surface-2/80 text-ink-2 backdrop-blur shadow-lg transition-colors duration-150 hover:bg-surface-3 hover:text-ink sm:flex"
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
         )}
-        {!hasPrev && <div className="h-12 w-12 shrink-0" aria-hidden />}
+        {!hasPrev && <div className="hidden h-12 w-12 shrink-0 sm:block" aria-hidden />}
 
       <div
         className="card relative flex max-h-[90vh] w-full max-w-[55.44rem] flex-col overflow-hidden rounded-2xl border-border-strong shadow-2xl"
@@ -123,6 +126,28 @@ export function DoorModal({ door, doors, onClose, onShowOnMap, onNavigate }: Doo
             style={aspect ? { aspectRatio: String(aspect) } : undefined}
             className="max-h-[81.4vh] w-auto max-w-full object-contain"
           />
+
+          {/* Prev/next arrows (inside the panel, mobile only) */}
+          {hasPrev && (
+            <button
+              type="button"
+              onClick={goPrev}
+              aria-label="Previous door"
+              className="absolute left-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-surface-2/80 text-ink-2 backdrop-blur shadow-lg sm:hidden"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+          )}
+          {hasNext && (
+            <button
+              type="button"
+              onClick={goNext}
+              aria-label="Next door"
+              className="absolute right-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-surface-2/80 text-ink-2 backdrop-blur shadow-lg sm:hidden"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+          )}
 
           {/* Counter */}
           {currentIndex >= 0 && doors.length > 1 && (
@@ -156,18 +181,21 @@ export function DoorModal({ door, doors, onClose, onShowOnMap, onNavigate }: Doo
         </div>
       </div>
 
-      {/* Next arrow */}
+      {/* Next arrow (outside the panel, desktop only) */}
       {hasNext && (
         <button
           type="button"
-          onClick={goNext}
+          onClick={(e) => {
+            e.stopPropagation();
+            goNext();
+          }}
           aria-label="Next door"
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border bg-surface-2/80 text-ink-2 backdrop-blur shadow-lg transition-colors duration-150 hover:bg-surface-3 hover:text-ink"
+          className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border bg-surface-2/80 text-ink-2 backdrop-blur shadow-lg transition-colors duration-150 hover:bg-surface-3 hover:text-ink sm:flex"
         >
           <ChevronRight className="h-6 w-6" />
         </button>
       )}
-      {!hasNext && <div className="h-12 w-12 shrink-0" aria-hidden />}
+      {!hasNext && <div className="hidden h-12 w-12 shrink-0 sm:block" aria-hidden />}
       </div>
     </div>
   );

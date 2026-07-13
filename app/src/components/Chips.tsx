@@ -13,10 +13,11 @@ interface ChipsProps<T extends string> {
 }
 
 /**
- * Wrapping row of filter chips sharing the Segmented sliding-pill mechanic:
- * a filled pill glides between chips (including across wrapped lines) while
- * labels cross-fade. Inactive chips are outlined; the active chip drops its
- * border so the dark pill shows through.
+ * Row of filter chips sharing the Segmented sliding-pill mechanic: a filled
+ * pill glides between chips while labels cross-fade. Inactive chips are
+ * outlined; the active chip drops its border so the dark pill shows through.
+ * Below `sm` the row is a single line that scrolls horizontally (scrollbar
+ * hidden); from `sm` up it wraps, and the pill glides across wrapped lines.
  */
 export function Chips<T extends string>({ options, value, onChange, ariaLabel }: ChipsProps<T>) {
   const { trackRef, pillRef, setBtnRef } = useSlidingPill(
@@ -29,7 +30,7 @@ export function Chips<T extends string>({ options, value, onChange, ariaLabel }:
       ref={trackRef}
       role="radiogroup"
       aria-label={ariaLabel}
-      className="relative flex flex-wrap items-center gap-1.5"
+      className="relative flex items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:flex-wrap sm:overflow-x-visible"
     >
       <span
         ref={pillRef}
@@ -45,8 +46,12 @@ export function Chips<T extends string>({ options, value, onChange, ariaLabel }:
             type="button"
             role="radio"
             aria-checked={active}
-            onClick={() => onChange(opt.value)}
-            className={`relative z-[1] rounded-full border px-3 py-1 text-sm font-medium transition-colors duration-300 ${
+            onClick={(e) => {
+              onChange(opt.value);
+              // A tapped chip may sit half-cut at the scroll edge on mobile.
+              e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+            }}
+            className={`relative z-[1] shrink-0 whitespace-nowrap rounded-full border px-3 py-1 text-sm font-medium transition-colors duration-300 ${
               active
                 ? 'border-transparent text-surface'
                 : 'border-border text-ink-2 hover:border-border-strong hover:text-ink'
