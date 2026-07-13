@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ChevronDown, Plus, X } from 'lucide-react';
+import { ChevronDown, X } from 'lucide-react';
 import doorsData from './data/doors.json';
 import type { Door } from './lib/types';
 import { useTheme } from './lib/useTheme';
@@ -297,6 +297,7 @@ export default function App() {
               <> · {cityCount} {cityCount === 1 ? 'city' : 'cities'}</>
             )}
           </p>
+          {/* Add doors button hidden for now
           <button
             type="button"
             onClick={() => setAddOpen(true)}
@@ -306,6 +307,7 @@ export default function App() {
           >
             <Plus className="h-4 w-4" />
           </button>
+          */}
           <ThemeToggle theme={theme} onToggle={toggle} />
         </div>
       </header>
