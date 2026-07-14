@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, MapPin, X } from 'lucide-react';
 import type { Door } from '../lib/types';
 import { STANDARD_EASE_CSS, prefersReducedMotion } from '../lib/easing';
-import { formatCoords, formatDate, photoUrl, placeLabel } from '../lib/format';
+import { formatCoords, formatDate, photoUrl, placeLabel, streetLabel } from '../lib/format';
 
 interface DoorModalProps {
   /** The door to show, or null to close. */
@@ -78,6 +78,7 @@ export function DoorModal({ door, doors, onClose, onShowOnMap, onNavigate }: Doo
     : `modal-panel-in 320ms ${STANDARD_EASE_CSS}`;
 
   const aspect = shown.w && shown.h ? shown.w / shown.h : undefined;
+  const street = streetLabel(shown);
 
   return (
     <div
@@ -124,7 +125,7 @@ export function DoorModal({ door, doors, onClose, onShowOnMap, onNavigate }: Doo
             src={photoUrl(shown.file, 'full')}
             alt={`Door in ${placeLabel(shown)}`}
             style={aspect ? { aspectRatio: String(aspect) } : undefined}
-            className="max-h-[81.4vh] w-auto max-w-full object-contain"
+            className="max-h-[calc(90vh-8.25rem)] w-auto max-w-full object-contain"
           />
 
           {/* Prev/next arrows (inside the panel, mobile only) */}
@@ -149,35 +150,40 @@ export function DoorModal({ door, doors, onClose, onShowOnMap, onNavigate }: Doo
             </button>
           )}
 
-          {/* Counter */}
-          {currentIndex >= 0 && doors.length > 1 && (
-            <span className="absolute bottom-2 right-2 z-10 rounded-full bg-surface-2/70 px-2.5 py-0.5 text-xs text-ink-2 backdrop-blur">
-              {currentIndex + 1} / {doors.length}
-            </span>
-          )}
         </div>
 
-        <div className="flex items-end justify-between gap-4 border-t border-border px-5 pb-5 pt-12">
+        <div className="flex items-center justify-between gap-4 border-t border-border px-5 py-5">
           <div className="min-w-0">
             <h2 className="truncate text-lg font-semibold tracking-[-0.02em] text-ink">
               {placeLabel(shown)}
             </h2>
-            {shown.date && (
-              <p className="mt-0.5 text-sm text-ink-2">{formatDate(shown.date)}</p>
+            {street ? (
+              <p className="mt-0.5 truncate text-sm text-ink-2">{street}</p>
+            ) : (
+              <p className="mt-0.5 font-mono text-xs text-ink-3">
+                {formatCoords(shown.lat, shown.lon)}
+              </p>
             )}
-            <p className="mt-1 font-mono text-xs text-ink-3">
-              {formatCoords(shown.lat, shown.lon)}
-            </p>
+            {shown.date && (
+              <p className="mt-1 text-xs text-ink-3">{formatDate(shown.date)}</p>
+            )}
           </div>
-          <button
-            type="button"
-            className="btn btn-secondary btn-sm shrink-0 whitespace-nowrap px-3 py-1.5 text-sm"
-            style={{ minHeight: 40 }}
-            onClick={() => onShowOnMap(shown)}
-          >
-            <MapPin className="h-4 w-4" />
-            Show on map
-          </button>
+          <div className="flex shrink-0 flex-col items-end gap-1.5">
+            {currentIndex >= 0 && doors.length > 1 && (
+              <span className="mr-2.5 text-xs text-ink-3">
+                {currentIndex + 1} / {doors.length}
+              </span>
+            )}
+            <button
+              type="button"
+              className="btn btn-secondary btn-sm whitespace-nowrap px-3 py-1.5 text-sm"
+              style={{ minHeight: 40 }}
+              onClick={() => onShowOnMap(shown)}
+            >
+              <MapPin className="h-4 w-4" />
+              Show on map
+            </button>
+          </div>
         </div>
       </div>
 

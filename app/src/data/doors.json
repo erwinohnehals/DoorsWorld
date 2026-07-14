@@ -9,7 +9,9 @@
     "city": "Prague",
     "country": "Czechia",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Haštalská",
+    "neighbourhood": "Josefov"
   },
   {
     "id": "20221025_155645",
@@ -21,7 +23,9 @@
     "city": "Prague",
     "country": "Czechia",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Haštalská",
+    "neighbourhood": "Josefov"
   },
   {
     "id": "20221026_101610",
@@ -33,7 +37,9 @@
     "city": "Prague",
     "country": "Czechia",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Thunovská",
+    "neighbourhood": "Lesser Town"
   },
   {
     "id": "20221026_121509",
@@ -45,7 +51,9 @@
     "city": "Prague",
     "country": "Czechia",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Vlašská",
+    "neighbourhood": "Hradčany"
   },
   {
     "id": "20221026_121538",
@@ -57,7 +65,9 @@
     "city": "Prague",
     "country": "Czechia",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Vlašská",
+    "neighbourhood": "Hradčany"
   },
   {
     "id": "20221026_121919",
@@ -69,7 +79,9 @@
     "city": "Prague",
     "country": "Czechia",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Vlašská",
+    "neighbourhood": "Hradčany"
   },
   {
     "id": "20221026_122318",
@@ -81,7 +93,9 @@
     "city": "Prague",
     "country": "Czechia",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Tržiště",
+    "neighbourhood": "Lesser Town"
   },
   {
     "id": "20221109_100727",
@@ -93,7 +107,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Gustav-Adolf-Straße",
+    "neighbourhood": "Centre North West"
   },
   {
     "id": "20221212_142828",
@@ -105,7 +121,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Erich-Zeigner-Allee",
+    "neighbourhood": "Plagwitz"
   },
   {
     "id": "20230113_124254",
@@ -117,7 +135,9 @@
     "city": "Goslar",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Mönchestraße",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20230113_125356",
@@ -129,7 +149,9 @@
     "city": "Goslar",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Schuhhof",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20230113_125551",
@@ -141,7 +163,9 @@
     "city": "Goslar",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Hoher Weg",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20230113_125939",
@@ -153,7 +177,9 @@
     "city": "Goslar",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Hoher Weg",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20230113_130306",
@@ -165,7 +191,9 @@
     "city": "Goslar",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Worthstraße",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20230117_121056",
@@ -177,7 +205,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Nikolaistraße",
+    "neighbourhood": "center"
   },
   {
     "id": "20230118_113616-2",
@@ -189,7 +219,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1005,
-    "h": 1600
+    "h": 1600,
+    "street": "Petersstraße",
+    "neighbourhood": "center"
   },
   {
     "id": "20230118_113641",
@@ -201,7 +233,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1088,
-    "h": 1600
+    "h": 1600,
+    "street": "Petersstraße",
+    "neighbourhood": "center"
   },
   {
     "id": "20230118_113742",
@@ -213,7 +247,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 961,
-    "h": 1600
+    "h": 1600,
+    "street": "Petersstraße",
+    "neighbourhood": "center"
   },
   {
     "id": "20230118_114011",
@@ -225,7 +261,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "",
+    "neighbourhood": "center"
   },
   {
     "id": "20230320_142438",
@@ -237,7 +275,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Tröndlinring",
+    "neighbourhood": "Centre North"
   },
   {
     "id": "20230320_142500",
@@ -249,7 +289,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Tröndlinring",
+    "neighbourhood": "Centre North"
   },
   {
     "id": "20230320_171845",
@@ -261,7 +303,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Gustav-Adolf-Straße",
+    "neighbourhood": "Centre North West"
   },
   {
     "id": "20230904_182745",
@@ -273,7 +317,9 @@
     "city": "Krün",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "In Gerold",
+    "neighbourhood": ""
   },
   {
     "id": "20240218_171124",
@@ -285,7 +331,9 @@
     "city": "Salvador",
     "country": "Brazil",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rua Direita de Santo Antônio",
+    "neighbourhood": "Santo Antônio"
   },
   {
     "id": "20240218_171144",
@@ -297,7 +345,9 @@
     "city": "Salvador",
     "country": "Brazil",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rua Direita de Santo Antônio",
+    "neighbourhood": "Santo Antônio"
   },
   {
     "id": "20240218_171209",
@@ -309,7 +359,9 @@
     "city": "Salvador",
     "country": "Brazil",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rua Direita de Santo Antônio",
+    "neighbourhood": "Santo Antônio"
   },
   {
     "id": "20240218_171225",
@@ -321,7 +373,9 @@
     "city": "Salvador",
     "country": "Brazil",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rua Direita de Santo Antônio",
+    "neighbourhood": "Santo Antônio"
   },
   {
     "id": "20240218_171250",
@@ -333,7 +387,9 @@
     "city": "Salvador",
     "country": "Brazil",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rua Direita de Santo Antônio",
+    "neighbourhood": "Santo Antônio"
   },
   {
     "id": "20240303_112209",
@@ -345,7 +401,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Windorfer Straße",
+    "neighbourhood": "Kleinzschocher"
   },
   {
     "id": "20240303_112347",
@@ -357,7 +415,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Windorfer Straße",
+    "neighbourhood": "Kleinzschocher"
   },
   {
     "id": "20240303_112414",
@@ -369,7 +429,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Windorfer Straße",
+    "neighbourhood": "Kleinzschocher"
   },
   {
     "id": "20240303_112428",
@@ -381,7 +443,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Windorfer Straße",
+    "neighbourhood": "Kleinzschocher"
   },
   {
     "id": "20240309_122234",
@@ -393,7 +457,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Beethovenstraße",
+    "neighbourhood": "center south"
   },
   {
     "id": "20240309_122434",
@@ -405,7 +471,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Grassistraße",
+    "neighbourhood": "center south"
   },
   {
     "id": "20240325_180350",
@@ -417,7 +485,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Pfaffendorfer Straße",
+    "neighbourhood": "Centre North"
   },
   {
     "id": "20240325_180704",
@@ -429,7 +499,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Pfaffendorfer Straße",
+    "neighbourhood": "Centre North"
   },
   {
     "id": "20240325_180717",
@@ -441,7 +513,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Pfaffendorfer Straße",
+    "neighbourhood": "Centre North"
   },
   {
     "id": "20240609_190738",
@@ -453,7 +527,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rudolph-Sack-Straße",
+    "neighbourhood": "Plagwitz"
   },
   {
     "id": "20240817_162608",
@@ -465,7 +541,9 @@
     "city": "Hildesheim",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Bergstraße",
+    "neighbourhood": "Moritzberg"
   },
   {
     "id": "20250311_125752",
@@ -477,7 +555,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rosentalgasse",
+    "neighbourhood": "Centre North West"
   },
   {
     "id": "20250311_125830",
@@ -489,7 +569,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rosentalgasse",
+    "neighbourhood": "Centre North West"
   },
   {
     "id": "20250711_160739",
@@ -501,7 +583,9 @@
     "city": "Pirna",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Dr.-Wilhelm-Külz-Straße",
+    "neighbourhood": ""
   },
   {
     "id": "20250711_160757",
@@ -513,7 +597,9 @@
     "city": "Pirna",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Marktgasse",
+    "neighbourhood": ""
   },
   {
     "id": "20250711_160813",
@@ -525,7 +611,9 @@
     "city": "Pirna",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Marktgasse",
+    "neighbourhood": ""
   },
   {
     "id": "20250711_160822",
@@ -537,7 +625,9 @@
     "city": "Pirna",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Marktgasse",
+    "neighbourhood": ""
   },
   {
     "id": "20250711_161453",
@@ -549,7 +639,9 @@
     "city": "Pirna",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Am Markt",
+    "neighbourhood": ""
   },
   {
     "id": "20250711_161540",
@@ -561,7 +653,9 @@
     "city": "Pirna",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Am Markt",
+    "neighbourhood": ""
   },
   {
     "id": "20250711_161635",
@@ -573,7 +667,9 @@
     "city": "Pirna",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Am Markt",
+    "neighbourhood": ""
   },
   {
     "id": "20250711_161643",
@@ -585,7 +681,9 @@
     "city": "Pirna",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Am Markt",
+    "neighbourhood": ""
   },
   {
     "id": "20250711_162449",
@@ -597,7 +695,9 @@
     "city": "Pirna",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Niedere Burgstraße",
+    "neighbourhood": ""
   },
   {
     "id": "20250712_164455",
@@ -609,7 +709,9 @@
     "city": "Bad Schandau",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Poststraße",
+    "neighbourhood": ""
   },
   {
     "id": "20260221_164331",
@@ -621,7 +723,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rietschelstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260222_170245",
@@ -633,7 +737,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Oeserstraße",
+    "neighbourhood": "Schleußig"
   },
   {
     "id": "20260223_121612",
@@ -645,7 +751,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Käthe-Kollwitz-Straße",
+    "neighbourhood": "center west"
   },
   {
     "id": "20260223_121824",
@@ -657,7 +765,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Käthe-Kollwitz-Straße",
+    "neighbourhood": "center west"
   },
   {
     "id": "20260228_112557",
@@ -669,7 +779,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Demmeringstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260301_115446",
@@ -681,7 +793,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Brockhausstraße",
+    "neighbourhood": "Schleußig"
   },
   {
     "id": "20260301_115833",
@@ -693,7 +807,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Oeserstraße",
+    "neighbourhood": "Schleußig"
   },
   {
     "id": "20260305_122808",
@@ -705,7 +821,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Dreilindenstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260306_145400",
@@ -717,7 +835,9 @@
     "city": "Hildesheim",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Treibestraße",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20260306_145849",
@@ -729,7 +849,9 @@
     "city": "Hildesheim",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Domhof",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20260306_150059",
@@ -741,7 +863,9 @@
     "city": "Hildesheim",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Domhof",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20260307_110157",
@@ -753,7 +877,9 @@
     "city": "Hildesheim",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Große Venedig",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20260307_110216",
@@ -765,7 +891,9 @@
     "city": "Hildesheim",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Große Venedig",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20260307_110343",
@@ -777,7 +905,9 @@
     "city": "Hildesheim",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Lucienvörder Straße",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20260307_110349",
@@ -789,7 +919,9 @@
     "city": "Hildesheim",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Lucienvörder Straße",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20260307_122451",
@@ -801,7 +933,9 @@
     "city": "Hildesheim",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Kalenberger Graben",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20260307_122510",
@@ -813,7 +947,9 @@
     "city": "Hildesheim",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Kalenberger Graben",
+    "neighbourhood": "Altstadt"
   },
   {
     "id": "20260315_072236",
@@ -825,7 +961,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Holbeinstraße",
+    "neighbourhood": "Schleußig"
   },
   {
     "id": "20260315_072329",
@@ -837,7 +975,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Brockhausstraße",
+    "neighbourhood": "Schleußig"
   },
   {
     "id": "20260327_170434",
@@ -849,7 +989,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Friesenstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260327_170648",
@@ -861,7 +1003,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rietschelstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260327_174610",
@@ -873,7 +1017,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Friesenstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260328_164330",
@@ -885,7 +1031,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rinckartstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260328_165058-2",
@@ -897,7 +1045,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 894,
-    "h": 1600
+    "h": 1600,
+    "street": "Rinckartstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260331_170815",
@@ -909,7 +1059,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Philipp-Reis-Straße",
+    "neighbourhood": "Leutzsch"
   },
   {
     "id": "20260401_115314",
@@ -921,7 +1073,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Flemmingstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260409_154721",
@@ -933,7 +1087,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rinckartstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260409_154748",
@@ -945,7 +1101,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rinckartstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260409_155000",
@@ -957,7 +1115,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Georg-Schwarz-Straße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260410_154231",
@@ -969,7 +1129,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Angerstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260410_164825",
@@ -981,7 +1143,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "An der Lehde",
+    "neighbourhood": "Leutzsch"
   },
   {
     "id": "20260427_154009",
@@ -993,7 +1157,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Paul-Küstner-Straße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260505_173533",
@@ -1005,7 +1171,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Henricistraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260505_173918",
@@ -1017,7 +1185,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Mühligstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260505_174631",
@@ -1029,7 +1199,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Rietschelstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260509_154638",
@@ -1041,7 +1213,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "William-Zipperer-Straße",
+    "neighbourhood": "Leutzsch"
   },
   {
     "id": "20260509_154653",
@@ -1053,7 +1227,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "William-Zipperer-Straße",
+    "neighbourhood": "Leutzsch"
   },
   {
     "id": "20260509_154753",
@@ -1065,7 +1241,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Landwaisenhausstraße",
+    "neighbourhood": "Leutzsch"
   },
   {
     "id": "20260509_154949",
@@ -1077,7 +1255,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "William-Zipperer-Straße",
+    "neighbourhood": "Leutzsch"
   },
   {
     "id": "20260509_155534",
@@ -1089,7 +1269,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "William-Zipperer-Straße",
+    "neighbourhood": "Leutzsch"
   },
   {
     "id": "20260509_160123",
@@ -1101,7 +1283,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "William-Zipperer-Straße",
+    "neighbourhood": "Leutzsch"
   },
   {
     "id": "20260509_160303",
@@ -1113,7 +1297,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "An der Lehde",
+    "neighbourhood": "Leutzsch"
   },
   {
     "id": "20260509_160355",
@@ -1125,7 +1311,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "An der Lehde",
+    "neighbourhood": "Leutzsch"
   },
   {
     "id": "20260509_160408",
@@ -1137,7 +1325,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "An der Lehde",
+    "neighbourhood": "Leutzsch"
   },
   {
     "id": "20260509_160931",
@@ -1149,7 +1339,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Georg-Schwarz-Straße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260510_114139",
@@ -1161,7 +1353,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Zentralstraße",
+    "neighbourhood": "center west"
   },
   {
     "id": "20260510_114214",
@@ -1173,7 +1367,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Zentralstraße",
+    "neighbourhood": "center west"
   },
   {
     "id": "20260510_174216",
@@ -1185,7 +1381,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Spittastraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260523_165518",
@@ -1197,7 +1395,9 @@
     "city": "Sebnitz",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Hertigswalder Straße",
+    "neighbourhood": ""
   },
   {
     "id": "20260523_165555",
@@ -1209,7 +1409,9 @@
     "city": "Sebnitz",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Hertigswalder Straße",
+    "neighbourhood": ""
   },
   {
     "id": "20260523_170941",
@@ -1221,7 +1423,9 @@
     "city": "Sebnitz",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Schillerstraße",
+    "neighbourhood": ""
   },
   {
     "id": "20260523_171935",
@@ -1233,7 +1437,9 @@
     "city": "Sebnitz",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Schillerstraße",
+    "neighbourhood": ""
   },
   {
     "id": "20260704_131334",
@@ -1245,7 +1451,9 @@
     "city": "Seesen",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Bahnhofstraße",
+    "neighbourhood": ""
   },
   {
     "id": "20260709_155733",
@@ -1257,7 +1465,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1026,
-    "h": 1600
+    "h": 1600,
+    "street": "Dreilindenstraße",
+    "neighbourhood": "Altlindenau"
   },
   {
     "id": "20260709_171015-2",
@@ -1269,7 +1479,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Ernst-Mey-Straße",
+    "neighbourhood": "Plagwitz"
   },
   {
     "id": "20260709_171028",
@@ -1281,7 +1493,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Ernst-Mey-Straße",
+    "neighbourhood": "Plagwitz"
   },
   {
     "id": "20260709_171548",
@@ -1293,7 +1507,9 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 1200,
-    "h": 1600
+    "h": 1600,
+    "street": "Weißenfelser Straße",
+    "neighbourhood": "Plagwitz"
   },
   {
     "id": "20260709_171844",
@@ -1305,6 +1521,8 @@
     "city": "Leipzig",
     "country": "Germany",
     "w": 930,
-    "h": 1600
+    "h": 1600,
+    "street": "Rudolph-Sack-Straße",
+    "neighbourhood": "Plagwitz"
   }
 ]

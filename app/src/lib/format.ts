@@ -23,6 +23,13 @@ export function formatCoords(lat: number, lon: number): string {
   return `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
 }
 
+/** "Karlova, Staré Město" — street + neighbourhood, falling back gracefully
+ *  (street only, neighbourhood only, or '' when Nominatim had neither). */
+export function streetLabel(door: Pick<Door, 'street' | 'neighbourhood'>): string {
+  const parts = [door.street, door.neighbourhood].map((s) => (s || '').trim()).filter(Boolean);
+  return parts.join(', ');
+}
+
 /** URL of a door photo derivative, honouring the deploy base path. */
 export function photoUrl(file: string, kind: 'thumb' | 'full'): string {
   return `${import.meta.env.BASE_URL}photos/${file}-${kind}.webp`;

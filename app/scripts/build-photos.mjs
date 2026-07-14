@@ -142,7 +142,9 @@ function extractLabel(json) {
   const city =
     a.city || a.town || a.village || a.municipality || a.hamlet || a.county || '';
   const country = a.country || '';
-  return { city, country };
+  const street = a.road || a.pedestrian || a.footway || '';
+  const neighbourhood = a.suburb || a.neighbourhood || a.quarter || a.city_district || '';
+  return { city, country, street, neighbourhood };
 }
 
 // --- Main ---------------------------------------------------------------
@@ -299,19 +301,21 @@ async function main() {
 
   const headers = { 'User-Agent': 'DoorsWorld/1.0 (personal art project)' };
   let fetched = 0;
-  const toFetch = [...uniqueKeys.entries()].filter(([k]) => !cache[k]);
+  // `street` is undefined on cache entries from before street/neighbourhood
+  // support — refetch those instead of leaving them incomplete.
+  const toFetch = [...uniqueKeys.entries()].filter(([k]) => !cache[k] || cache[k].street === undefined);
   for (let i = 0; i < toFetch.length; i++) {
     const [key, { lat, lon }] = toFetch[i];
     const url =
       `https://nominatim.openstreetmap.org/reverse?format=jsonv2` +
-      `&lat=${lat}&lon=${lon}&zoom=10&accept-language=en`;
+      `&lat=${lat}&lon=${lon}&zoom=18&accept-language=en`;
     if (fetched > 0) sleep(1100); // strictly < 1 req/sec
     try {
       const json = await httpsGetJson(url, headers);
       cache[key] = extractLabel(json);
     } catch (e) {
       console.warn(`WARN: geocode failed for ${key}: ${e.message.split('\n')[0]}`);
-      cache[key] = { city: '', country: '' };
+      cache[key] = { city: '', country: '', street: '', neighbourhood: '' };
     }
     fetched++;
     // incremental save
@@ -322,7 +326,7 @@ async function main() {
   // 5. Emit doors.json ----------------------------------------------------
   const doors = kept.map((p) => {
     const key = roundKey(p.lat, p.lon);
-    const label = cache[key] || { city: '', country: '' };
+    const label = cache[key] || { city: '', country: '', street: '', neighbourhood: '' };
     return {
       id: p.id,
       file: p.id,
@@ -332,6 +336,8 @@ async function main() {
       year: p.date ? p.date.getFullYear() : null,
       city: label.city,
       country: label.country,
+      street: label.street,
+      neighbourhood: label.neighbourhood,
       w: p.w,
       h: p.h,
     };

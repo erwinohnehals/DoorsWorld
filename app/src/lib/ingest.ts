@@ -18,6 +18,8 @@ export interface AnalyzedPhoto {
   h: number;
   city: string;
   country: string;
+  street: string;
+  neighbourhood: string;
 }
 
 const THUMB_MAX = 480;
@@ -53,16 +55,25 @@ async function toWebp(bitmap: ImageBitmap, max: number): Promise<{ blob: Blob; w
   return { blob, w, h };
 }
 
+interface GeocodeLabel {
+  city: string;
+  country: string;
+  street: string;
+  neighbourhood: string;
+}
+
 /** Reverse geocode via Nominatim; same rounded key + labels as the pipeline. */
-export async function geocode(lat: number, lon: number): Promise<{ city: string; country: string }> {
+export async function geocode(lat: number, lon: number): Promise<GeocodeLabel> {
   const key = `${lat.toFixed(3)},${lon.toFixed(3)}`;
-  let cache: Record<string, { city: string; country: string }> = {};
+  let cache: Record<string, GeocodeLabel> = {};
   try {
     cache = JSON.parse(localStorage.getItem(GEOCODE_CACHE_KEY) || '{}');
   } catch {
     /* corrupt cache — refetch */
   }
-  if (cache[key]) return cache[key];
+  // `street` is undefined on cache entries from before street/neighbourhood
+  // support — refetch those instead of returning a stale, incomplete label.
+  if (cache[key]?.street !== undefined) return cache[key];
 
   const wait = lastGeocodeAt + 1100 - Date.now();
   if (wait > 0) await new Promise((r) => setTimeout(r, wait));
@@ -70,14 +81,16 @@ export async function geocode(lat: number, lon: number): Promise<{ city: string;
 
   const url =
     `https://nominatim.openstreetmap.org/reverse?format=jsonv2` +
-    `&lat=${lat.toFixed(3)}&lon=${lon.toFixed(3)}&zoom=10&accept-language=en`;
+    `&lat=${lat.toFixed(3)}&lon=${lon.toFixed(3)}&zoom=18&accept-language=en`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Geocoding failed (HTTP ${res.status})`);
   const json = await res.json();
   const a = json?.address ?? {};
-  const label = {
+  const label: GeocodeLabel = {
     city: a.city || a.town || a.village || a.municipality || a.hamlet || a.county || '',
     country: a.country || '',
+    street: a.road || a.pedestrian || a.footway || '',
+    neighbourhood: a.suburb || a.neighbourhood || a.quarter || a.city_district || '',
   };
   cache[key] = label;
   localStorage.setItem(GEOCODE_CACHE_KEY, JSON.stringify(cache));
@@ -101,14 +114,29 @@ export async function analyzePhoto(file: File): Promise<AnalyzedPhoto> {
     const thumb = await toWebp(bitmap, THUMB_MAX);
     let city = '';
     let country = '';
+    let street = '';
+    let neighbourhood = '';
     if (lat != null && lon != null) {
       try {
-        ({ city, country } = await geocode(lat, lon));
+        ({ city, country, street, neighbourhood } = await geocode(lat, lon));
       } catch {
         /* leave empty, same as the pipeline on geocode failure */
       }
     }
-    return { file, lat, lon, date, thumb: thumb.blob, full: full.blob, w: full.w, h: full.h, city, country };
+    return {
+      file,
+      lat,
+      lon,
+      date,
+      thumb: thumb.blob,
+      full: full.blob,
+      w: full.w,
+      h: full.h,
+      city,
+      country,
+      street,
+      neighbourhood,
+    };
   } finally {
     bitmap.close();
   }
@@ -159,6 +187,8 @@ export function buildDoor(id: string, p: AnalyzedPhoto): Door {
     year: p.date ? p.date.getFullYear() : null,
     city: p.city,
     country: p.country,
+    street: p.street,
+    neighbourhood: p.neighbourhood,
     w: p.w,
     h: p.h,
   };

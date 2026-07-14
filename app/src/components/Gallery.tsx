@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import type { Door } from '../lib/types';
 import { EXPO_OUT_CSS, STANDARD_EASE_CSS } from '../lib/easing';
-import { formatDate, photoUrl, placeLabel } from '../lib/format';
+import { formatDate, photoUrl, placeLabel, streetLabel } from '../lib/format';
 
 interface GalleryProps {
   doors: Door[];
@@ -26,6 +26,7 @@ export function Gallery({ doors, onSelect, baseDelayMs = 0 }: GalleryProps) {
         {doors.map((door, i) => {
           const delay = baseDelayMs + Math.min(i, STAGGER_CAP) * 50;
           const aspect = door.w && door.h ? door.w / door.h : 1;
+          const street = streetLabel(door);
           return (
             <button
               key={door.id}
@@ -55,6 +56,7 @@ export function Gallery({ doors, onSelect, baseDelayMs = 0 }: GalleryProps) {
                 </div>
                 <div className="px-3 py-2">
                   <p className="truncate text-sm font-medium text-ink">{placeLabel(door)}</p>
+                  {street && <p className="mt-0.5 truncate text-xs text-ink-2">{street}</p>}
                   {door.date && (
                     <p className="mt-0.5 truncate text-xs text-ink-3">{formatDate(door.date)}</p>
                   )}

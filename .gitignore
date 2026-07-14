@@ -12,3 +12,5 @@ app/dist/
 # Ad-hoc verification screenshots in the repo root
 /*.png
 app/scripts/build.log
+design-language.html
+

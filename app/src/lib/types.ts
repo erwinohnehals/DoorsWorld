@@ -10,6 +10,10 @@ export interface Door {
   year: number | null;
   city: string;
   country: string;
+  /** Street name, e.g. "Karlova". Empty/absent where Nominatim has no road at this point. */
+  street?: string;
+  /** Suburb/quarter, e.g. "Staré Město". Empty/absent where Nominatim has none. */
+  neighbourhood?: string;
   /** Full webp pixel dimensions (for aspect ratio). */
   w: number | null;
   h: number | null;
